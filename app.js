@@ -7,6 +7,7 @@ const morganMidWare = require('./utils/morgan')
 const globalErrorHandler = require('./controllers/error.controller');
 
 // routes import
+const userRoute = require('./routes/user.route')
 
 const app = express()
 
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(cookieParser);
 
 // ROUTES
-// app.use('')
+app.use('/api/v1/users', userRoute)
 
 // home route
 app.get('/', (req,res) => {
