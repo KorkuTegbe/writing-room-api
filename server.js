@@ -1,8 +1,8 @@
 const app  = require('./app')
 require('dotenv').config()
 
-
-
+// import db
+const db = require('./models') 
 
 // CONFIGURE UNCAUGHT EXCEPTIONS
 process.on('uncaughtException', (err) => {
