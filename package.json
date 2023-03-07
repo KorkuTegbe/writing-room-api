@@ -1,0 +1,28 @@
+{
+  "name": "writing-room-api",
+  "version": "1.0.0",
+  "description": "an api for writing, editing, deleting and updating articles",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KorkuTegbe/writing-room-api.git"
+  },
+  "author": "Justice Etorko-Gbeku",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KorkuTegbe/writing-room-api/issues"
+  },
+  "homepage": "https://github.com/KorkuTegbe/writing-room-api#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "morgan-json": "^1.1.0",
+    "winston": "^3.8.2"
+  }
+}
