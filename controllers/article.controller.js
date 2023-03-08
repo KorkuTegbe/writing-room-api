@@ -47,30 +47,42 @@ exports.draftArticle = async (req,res) => {
     });
 };
 
-// exports.publishArticle = async (req, res) => {
-//     const { id } = req.params
+exports.publishArticle = async (req, res) => {
+    const { id } = req.params
 
-//     // find article 
-//     const article = await Article.findOne({
-//         where: {
-//             id: id,
-//             userId: req.user.id,
-//         },
-//     })
+    // find article 
+    const article = await Article.findOne({
+        where: {
+            id: id,
+            userId: req.user.id,
+        },
+    })
 
-//     const status = article.status = 'Published'
+    const status = article.status = 'Published'
 
-//     const update = await Article.update({
-//         where: { status: 'Draft'},
-//         status
-//     });
+    // const update = await Article.update({
+    //     where: { status: 'Draft'},
+    //     status
+    // });
 
-//     res.status(201).json({
-//         status: 'success',
-//         message: 'Status updated',
-//         data: { update }
-//     });
-// }
+    const update = await Article.update(
+        { status },
+        {
+          where: {
+            id: article.id,
+            status: 'Draft',
+            userId: req.user.id,
+          },
+        }
+    );
+      
+
+    res.status(201).json({
+        status: 'success',
+        message: 'Status updated',
+        data: { article }
+    });
+}
 
 
 // edit article
@@ -143,12 +155,12 @@ exports.getOwnerArticles = async (req, res) => {
     const articles = await Article.findAll({
       where: { 
         userId: req.user.id,
-        status:"Draft"
+        // status:"Draft"
        },
     });
   
     res.status(200).json({ 
-        status: true, 
+        status: 'success', 
         results: articles.length,
         data: { articles }, 
     });
