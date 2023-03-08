@@ -1,6 +1,6 @@
 const express = require('express')
+const app = express()
 const cookieParser = require('cookie-parser')
-
 const appError = require('./utils/appError')
 const logger = require('./utils/logger')
 const morganMidWare = require('./utils/morgan')
@@ -8,8 +8,8 @@ const globalErrorHandler = require('./controllers/error.controller');
 
 // routes import
 const userRoute = require('./routes/user.route')
+const articleRoute = require('./routes/article.route')
 
-const app = express()
 
 // MORGAN MIDDLEWARE
 app.use(morganMidWare)
@@ -19,10 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // COOKIE PARSER
-// app.use(cookieParser);
+app.use(cookieParser());
 
 // ROUTES
 app.use('/api/v1/users', userRoute)
+app.use('/api/v1/article', articleRoute)
 
 // home route
 app.get('/', (req,res) => {

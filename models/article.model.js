@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        media_url: {
+        media_urls: {
           type: DataTypes.JSON,
         },
         reading_time: {
-            type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER,
         },
         likesNo: {
           type: DataTypes.INTEGER,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           defaultValue: 0,
         },
         userId: {
-            type: DataTypes.INTEGER
+          type: DataTypes.INTEGER
         },
       },
       {
