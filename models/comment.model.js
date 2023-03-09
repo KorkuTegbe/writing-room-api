@@ -4,7 +4,12 @@ module.exports= (sequelize, DataTypes)=>{
             type: DataTypes.STRING,
             allowNull:false
         },
-        
+        userId: {
+            type: DataTypes.INTEGER
+        },
+        articleId: {
+            type: DataTypes.INTEGER
+        },
     },
         {
             tableName: 'comments' 
