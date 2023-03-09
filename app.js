@@ -9,6 +9,7 @@ const globalErrorHandler = require('./controllers/error.controller');
 // routes import
 const userRoute = require('./routes/user.route')
 const articleRoute = require('./routes/article.route')
+const commentRoute = require('./routes/comment.route')
 
 
 // MORGAN MIDDLEWARE
@@ -24,6 +25,7 @@ app.use(cookieParser());
 // ROUTES
 app.use('/api/v1/users', userRoute)
 app.use('/api/v1/article', articleRoute)
+app.use('/api/v1/comment', commentRoute)
 
 // home route
 app.get('/', (req,res) => {
