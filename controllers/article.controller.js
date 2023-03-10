@@ -196,7 +196,7 @@ exports.getAnArticle = async (req, res) => {
 
     res.status(200).json({
         status: 'success',
-        data: { article },
+        data: article,
     });
 }
 

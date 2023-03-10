@@ -347,9 +347,7 @@ Success
 {
   "status": "success",
   "results": 1,
-  "data": {
-    "articles": [{article}]
-  }
+  "data":  [article]
 }
 ```
 - error
@@ -373,7 +371,7 @@ Success
 ```
 {
   "status": "success",
-  "data": {
+  "data": 
     "article": {
       "id": 2,
       "title": "An edited title",
@@ -391,12 +389,7 @@ Success
       "updatedAt": "2023-03-09T05:20:07.451Z",
       "user": {
         "id": 2,
-        "firstName": "Jona",
-        "lastName": "Kupoa",
-        "email": "jona@mail.com",
         "username": "jona",
-        "createdAt": "2023-03-08T15:51:40.000Z",
-        "updatedAt": "2023-03-08T15:51:40.000Z"
       },
       "comments": [
         {
@@ -410,7 +403,7 @@ Success
       ]
     }
   }
-}
+
 ```
 - error
 ```
@@ -435,75 +428,101 @@ Success
 ```
 {
   "status": "success",
-  "results": 2,
-  "data": {
-    "allArticles": [
-      {
-        "article": {
-          "id": 2,
-          "title": "An edited title",
-          "content": "This is the content that will be updated. I guess this sis the update. Listeining to gyedu baly ambulley because it's Ghana month. Yenkor. ",
-          "media_urls": [
-            "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678290965/pictures/u8oqmhngxwj8ozr1b9qg.png",
-            "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678290966/pictures/uxweoa1dxpujxex0dojm.png"
-          ],
-          "reading_time": 1,
-          "likesNo": 0,
-          "status": "Published",
-          "views": 5,
-          "userId": 2,
-          "createdAt": "2023-03-08T15:56:01.000Z",
-          "updatedAt": "2023-03-09T05:20:07.000Z",
-          "user": {
-            "id": 2,
-            "firstName": "Jona",
-            "lastName": "Kupoa",
-            "email": "jona@mail.com",
-            "username": "jona",
-            "createdAt": "2023-03-08T15:51:40.000Z",
-            "updatedAt": "2023-03-08T15:51:40.000Z"
-          },
-          "comments": [
-            {
-              "id": 5,
-              "comment": "this is another comment",
-              "userId": 2,
-              "articleId": 2,
-              "createdAt": "2023-03-08T23:15:37.000Z",
-              "updatedAt": "2023-03-08T23:15:37.000Z"
-            }
-          ]
-        }
+  "results": 4,
+  "data": [
+    {
+      "id": 9,
+      "title": "this is a post",
+      "content": "this is the content of this new article",
+      "media_urls": [
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678409888/pictures/bmhop7kp2diag2gv18ns.png",
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678409906/pictures/lshuitdnsb86yg9sc6ch.png"
+      ],
+      "reading_time": 1,
+      "likesNo": 0,
+      "status": "Published",
+      "views": 3,
+      "userId": 8,
+      "createdAt": "2023-03-10T00:57:52.000Z",
+      "updatedAt": "2023-03-10T07:37:13.000Z",
+      "user": {
+        "id": 8,
+        "username": "testuser"
       },
-      {
-        "article": {
-          "id": 3,
-          "title": "The writer's room",
-          "content": "the writer's room is a room full of writers writing what writers normally write.",
-          "media_urls": [
-            "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678314537/pictures/y7adqbfy5axqftfkysyy.png"
-          ],
-          "reading_time": 1,
-          "likesNo": 0,
-          "status": "Published",
-          "views": 2,
+      "comments": []
+    },
+    {
+      "id": 10,
+      "title": "This title has been edited",
+      "content": "This is the content that will be updated.",
+      "media_urls": [
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678411236/pictures/gxyjxdim9gqdvtxdonah.png",
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678411241/pictures/cwwqdgn5wnevhh6bad3s.png"
+      ],
+      "reading_time": 1,
+      "likesNo": 0,
+      "status": "Published",
+      "views": 0,
+      "userId": 9,
+      "createdAt": "2023-03-10T01:20:06.000Z",
+      "updatedAt": "2023-03-10T01:22:11.000Z",
+      "user": {
+        "id": 9,
+        "username": "testuser2"
+      },
+      "comments": []
+    },
+    {
+      "id": 2,
+      "title": "An edited title",
+      "content": "This is the content that will be updated. I guess this sis the update. Listeining to gyedu baly ambulley because it's Ghana month. Yenkor. ",
+      "media_urls": [
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678290965/pictures/u8oqmhngxwj8ozr1b9qg.png",
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678290966/pictures/uxweoa1dxpujxex0dojm.png"
+      ],
+      "reading_time": 1,
+      "likesNo": 0,
+      "status": "Published",
+      "views": 6,
+      "userId": 2,
+      "createdAt": "2023-03-08T15:56:01.000Z",
+      "updatedAt": "2023-03-10T00:56:23.000Z",
+      "user": {
+        "id": 2,
+        "username": "jona"
+      },
+      "comments": [
+        {
+          "id": 5,
+          "comment": "this is another comment",
           "userId": 2,
-          "createdAt": "2023-03-08T22:29:01.000Z",
-          "updatedAt": "2023-03-09T05:17:25.000Z",
-          "user": {
-            "id": 2,
-            "firstName": "Jona",
-            "lastName": "Kupoa",
-            "email": "jona@mail.com",
-            "username": "jona",
-            "createdAt": "2023-03-08T15:51:40.000Z",
-            "updatedAt": "2023-03-08T15:51:40.000Z"
-          },
-          "comments": []
+          "articleId": 2,
+          "createdAt": "2023-03-08T23:15:37.000Z",
+          "updatedAt": "2023-03-08T23:15:37.000Z"
         }
-      }
-    ]
-  }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "The writer's room",
+      "content": "the writer's room is a room full of writers writing what writers normally write.",
+      "media_urls": [
+        "https://res.cloudinary.com/doxxo2k1j/image/upload/v1678314537/pictures/y7adqbfy5axqftfkysyy.png"
+      ],
+      "reading_time": 1,
+      "likesNo": 0,
+      "status": "Published",
+      "views": 2,
+      "userId": 2,
+      "createdAt": "2023-03-08T22:29:01.000Z",
+      "updatedAt": "2023-03-09T05:17:25.000Z",
+      "user": {
+        "id": 2,
+        "username": "jona"
+      },
+      "comments": []
+    }
+  ]
 }
 ```
 - error
@@ -580,7 +599,7 @@ Success
 
 ### Get comments of an article
 
-- Route: http://localhost:3334/api/v1/comment/articleId
+- Route: /api/v1/comment/articleId
 - Method: GET
 
 - Responses
@@ -589,50 +608,40 @@ Success
 {
   "status": "success",
   "results": 4,
-  "data": {
-    "allComments": [
-      {
-        "comment": {
-          "id": 9,
-          "comment": "this is another comment",
-          "userId": 2,
-          "articleId": 4,
-          "createdAt": "2023-03-08T23:24:20.000Z",
-          "updatedAt": "2023-03-08T23:24:20.000Z"
-        }
-      },
-      {
-        "comment": {
-          "id": 8,
-          "comment": "this is another comment",
-          "userId": 2,
-          "articleId": 4,
-          "createdAt": "2023-03-08T23:22:01.000Z",
-          "updatedAt": "2023-03-08T23:22:01.000Z"
-        }
-      },
-      {
-        "comment": {
-          "id": 7,
-          "comment": "this is another comment",
-          "userId": 2,
-          "articleId": 4,
-          "createdAt": "2023-03-08T23:19:53.000Z",
-          "updatedAt": "2023-03-08T23:19:53.000Z"
-        }
-      },
-      {
-        "comment": {
-          "id": 2,
-          "comment": "this is another comment",
-          "userId": 2,
-          "articleId": 4,
-          "createdAt": "2023-03-08T23:14:48.000Z",
-          "updatedAt": "2023-03-08T23:14:48.000Z"
-        }
-      }
-    ]
-  }
+  "data": [
+    {
+      "id": 9,
+      "comment": "this is another comment",
+      "userId": 2,
+      "articleId": 4,
+      "createdAt": "2023-03-08T23:24:20.000Z",
+      "updatedAt": "2023-03-08T23:24:20.000Z"
+    },
+    {
+      "id": 8,
+      "comment": "this is another comment",
+      "userId": 2,
+      "articleId": 4,
+      "createdAt": "2023-03-08T23:22:01.000Z",
+      "updatedAt": "2023-03-08T23:22:01.000Z"
+    },
+    {
+      "id": 7,
+      "comment": "this is another comment",
+      "userId": 2,
+      "articleId": 4,
+      "createdAt": "2023-03-08T23:19:53.000Z",
+      "updatedAt": "2023-03-08T23:19:53.000Z"
+    },
+    {
+      "id": 2,
+      "comment": "this is another comment",
+      "userId": 2,
+      "articleId": 4,
+      "createdAt": "2023-03-08T23:14:48.000Z",
+      "updatedAt": "2023-03-08T23:14:48.000Z"
+    }
+  ]
 }
 ```
  - error
