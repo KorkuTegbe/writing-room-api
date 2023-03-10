@@ -14,7 +14,10 @@ exports.authorize = async (req,res,next) => {
     if(process.env.NODE_ENV === 'development'){
         const authHeader = req.headers.authorization;
         if(!authHeader){
-            throw new AppError('You are not logged in, please login to continue', 400)
+            return res.status(401).json({
+                status: 'fail',
+                message: 'You are not logged in, please login to continue'
+            })
         }
 
         // save token from authHeader if available
@@ -22,7 +25,10 @@ exports.authorize = async (req,res,next) => {
     }else if(process.env.NODE_ENV === 'production') {
         const cookieValue = req.cookies.jwt;
         if (!cookieValue){
-            throw new AppError('You are not logged in, please login to continue')
+            return res.status(401).json({
+                status: 'fail',
+                message: 'You are not logged in, please login to continue'
+            })
         }
 
         // save token from cookie
@@ -41,10 +47,12 @@ exports.authorize = async (req,res,next) => {
     });
 
     if (!currentUser){
-        throw new AppError('Account not found. Please login again', 404)
+        return res.status(401).json({
+            status: 'fail',
+            message: 'Account not found. Please login'
+        })
     }
 
-    // add user to req object
     req.user = currentUser;
 
     next()

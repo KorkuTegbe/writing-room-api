@@ -60,11 +60,6 @@ exports.publishArticle = async (req, res) => {
 
     const status = article.status = 'Published'
 
-    // const update = await Article.update({
-    //     where: { status: 'Draft'},
-    //     status
-    // });
-
     const update = await Article.update(
         { status },
         {
@@ -76,7 +71,6 @@ exports.publishArticle = async (req, res) => {
         }
     );
       
-
     res.status(201).json({
         status: 'success',
         message: 'Status updated',
@@ -102,7 +96,12 @@ exports.editArticle = async (req, res) => {
     })
 
     // article not found
-    if(!article) throw new AppError('Article not found', 404)
+    if(!article){
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Article not found'
+        })
+    }
 
     // if media files
     if (files){
@@ -140,7 +139,10 @@ exports.deleteArticle = async (req, res) => {
     
       // ARTICLE NOT FOUND
       if (!article) {
-        throw new AppError("article not found", 404);
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Article not found'
+        })
       }
     
       return res.status(200).json({ 
@@ -155,7 +157,6 @@ exports.getOwnerArticles = async (req, res) => {
     const articles = await Article.findAll({
       where: { 
         userId: req.user.id,
-        // status:"Draft"
        },
     });
   
@@ -175,7 +176,7 @@ exports.getAnArticle = async (req, res) => {
         {
             model: User,
             required: true,
-            attributes: { exclude: ["password"] },
+            attributes: { exclude: ['password','email', 'updatedAt', 'createdAt', 'firstName', 'lastName'] },
         },
         {
             model: Comment,
@@ -183,7 +184,12 @@ exports.getAnArticle = async (req, res) => {
         ],
     });
 
-    if (!article) throw new AppError("article not found", 404);
+    if (!article){
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Article not found'
+        })
+    };
 
     article.views += 1;
     await article.save();
@@ -198,7 +204,9 @@ exports.getAnArticle = async (req, res) => {
 exports.getAllArticles = async (req, res) => {
     const { limit, userId, status, orderBy } = req.query
 
+    // object to hold the query parameters for Sequelize
     const queryObject = {};
+    // object to hold the WHERE conditions for Sequelize
     const findObject = {};
 
     queryObject.limit = limit ? Number(limit) : 10;
@@ -217,7 +225,7 @@ exports.getAllArticles = async (req, res) => {
             {
                 model: User,
                 required: true,
-                attributes: { exclude: ['password']},
+                attributes: { exclude: ['password','email', 'updatedAt', 'createdAt', 'firstName', 'lastName']},
             },
             {
                 model: Comment,
@@ -230,15 +238,13 @@ exports.getAllArticles = async (req, res) => {
 
         article.commentsNo = comments.length
 
-        return {
-            article,
-        };
+        return article;
     });
 
     res.status(200).json({
         status: 'success',
         results: allArticles.length,
-        data: { allArticles }
+        data: allArticles
     });
     
 }

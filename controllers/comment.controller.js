@@ -16,8 +16,12 @@ exports.makeComment = async (req, res) => {
         where: { id: articleId, status: 'Published' }
     })
 
-    
-    if(!article) throw new AppError('Article not found', 404)
+    if(!article){ 
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Article not found'
+        })
+    }
 
     const comment = await Comment.create({
         comment: req.body.comment,
@@ -42,7 +46,10 @@ exports.deleteComment = async (req, res) => {
   
     // comment NOT FOUND
     if (!comment) {
-      throw new AppError("Comment not found", 404);
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Comment not found'
+        });
     }
   
     return res.status(200).json({ 
@@ -63,17 +70,13 @@ exports.getCommentsOfAnArticle = async (req, res) => {
     });
   
     const allComments = comments.map((comment) => {
-
-        return {
-            comment ,
-        };
-
+        return comment;
     });
   
     res.status(200).json({ 
         status: 'success', 
         results: allComments.length,
-        data: { allComments }, 
+        data: allComments, 
     });
 };
     

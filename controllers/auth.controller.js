@@ -42,12 +42,19 @@ exports.signup = async (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
     // validate input
     if (!(firstName && lastName && email && password && username)){
-        throw new AppError('All fields are required', 400);
+        return res.status(400).json({
+            message: 'All fields are required!'
+        })
     }
 
     // check if user already exists
     const oldUser = await User.findOne({ where: { email: email }})
-    if (oldUser) throw new AppError('User already exists. Please login')
+    if (oldUser) {
+        return res.status(400).json({
+            status: 'fail',
+            message: 'User already exists. Please login'
+        })
+    }
 
     // create new user
     const user = await User.create(req.body);
@@ -64,7 +71,11 @@ exports.login = async (req, res) => {
     // get user input
     const { email, password } = req.body;
     // validate user input
-    if(!(email && password)) throw new AppError('All fields are required', 400);
+    if(!(email && password)){ 
+        return res.status(400).json({
+            message: 'All fields are required!'
+        })
+    };
     // check if user exists
     const user = await User.findOne({
         where: { email: email}
@@ -72,7 +83,10 @@ exports.login = async (req, res) => {
 
     // check user exists and password is correct without leaking extra info
     if(!user || !(await user.comparePassword(password))){
-        throw new AppError('Email or Password Incorrect', 400)
+        return res.status(400).json({
+            status: 'fail',
+            message: 'Email or Password Incorrect'
+        })
     }
 
     const msg = 'Login successful'
